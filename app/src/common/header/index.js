@@ -19,7 +19,11 @@ class Header extends Component {
           <NavItem className="left active">首页</NavItem>
           <NavItem className="left">下载App</NavItem>
           <NavItem className="right">登录</NavItem>
-          <NavSearch />
+          <NavSearch
+            className={this.props.focused ? "focused" : ""}
+            onFocus={this.props.handleInputFocus}
+            onBlur={this.props.handleInputBlur}
+          />
           <NavItem className="right">Aa</NavItem>
         </Nav>
         <Addition>
@@ -31,13 +35,26 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {};
+const mapStateToProps = (state) => {
+  return {
+    focused: state.focused
+  };
 };
-const mapDispatchToProps = dispatch => {
-  return{
-
-  }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleInputFocus() {
+      const action = {
+        type: "search_focus"
+      };
+      dispatch(action);
+    },
+    handleInputBlur(){
+      const action = {
+        type: "search_blur"
+      };
+      dispatch(action);
+    }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

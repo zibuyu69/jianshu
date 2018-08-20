@@ -54,6 +54,9 @@ export const NavSearch = styled.input.attrs({
   &::placeholder{
     color:#999;
   }
+  &.focused{
+    width:240px;
+  }
 `;
 export const Addition=styled.div`
   position: absolute;
