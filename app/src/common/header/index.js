@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import  {actionCreators} from "./store/index";
 import {
   HeaderWrapper,
   Logo,
@@ -28,31 +29,24 @@ class Header extends Component {
         </Nav>
         <Addition>
           <Button className="writing">写文章</Button>
-
           <Button className="reg">注册</Button>
         </Addition>
       </HeaderWrapper>
     );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     focused: state.header.focused
   };
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     handleInputFocus() {
-      const action = {
-        type: "search_focus"
-      };
-      dispatch(action);
+      dispatch(actionCreators.searchFocus());
     },
     handleInputBlur() {
-      const action = {
-        type: "search_blur"
-      };
-      dispatch(action);
+      dispatch(actionCreators.searchBlur());
     }
   };
 };
